@@ -8,9 +8,9 @@ This Library gives some helpful classes to manipulate Matrix Frames on a TFT Scr
 With TFTCanvas we extend some dependency issues for use a variety of TFTScreens with Adafruit TFT library .
 Nowadays is supported
 
- *		· ST7735 			  https://github.com/adafruit/Adafruit-ST7735-Library
- *		· SPFD5408 			https://github.com/adafruit/TFTLCD-Library
- *		· ILI9341 			https://github.com/adafruit/Adafruit_ILI9341
+ *	ST7735 			  https://github.com/adafruit/Adafruit-ST7735-Library
+ *	SPFD5408 			https://github.com/adafruit/TFTLCD-Library
+ *	ILI9341 			https://github.com/adafruit/Adafruit_ILI9341
 
 
  *	BasicLinearAlgebra is needed to integrate Matrix concepts and graphics terms.
