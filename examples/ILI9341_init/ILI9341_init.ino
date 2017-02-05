@@ -1,9 +1,6 @@
 #include <SPI.h>  
-#include <Adafruit_GFX.h>    // Core graphics library
+#define _ILI9341_
 #include <TFTCanvas.h>    
-
-#define TFT_CS   7
-#define TFT_DC   6
 
 TFTCanvas tft = TFTCanvas();
 

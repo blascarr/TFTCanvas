@@ -1,5 +1,4 @@
-#include <SPFD5408_Adafruit_GFX.h>
-
+#define _SPFD5408_
 #include <TFTCanvas.h>
 
 TFTCanvas tft = TFTCanvas();
