@@ -13,7 +13,7 @@ Nowadays is supported
  *	ILI9341 			https://github.com/adafruit/Adafruit_ILI9341
 
 
- *	BasicLinearAlgebra is needed to integrate Matrix concepts and graphics terms.
+ *	<a href="https://github.com/tomstewart89/BasicLinearAlgebra">BasicLinearAlgebra</a> is needed to integrate Matrix concepts and graphics terms.
 
 https://github.com/tomstewart89/BasicLinearAlgebra
 
