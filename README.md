@@ -17,6 +17,19 @@ Nowadays is supported
 
 https://github.com/tomstewart89/BasicLinearAlgebra
 
+<h1>ICSP Connection TFT</h1>
+
+<p align="center">
+  <img  src="/img/PinOut/TFTICSPPinPro_bb.png" width="200"/>
+  
+</p>
+
+<h1>ICSP Connection TFT Pin Arduino</h1>
+<p align="center">
+  <img  src="/img/PinOut/TFTICSPPin_bb.png" width="200"/>
+  
+</p>
+
  * Written by Adrian for Blascarr
 
 

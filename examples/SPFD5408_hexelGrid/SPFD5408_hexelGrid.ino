@@ -8,10 +8,17 @@ void setup() {
   uint16_t TFTID = tft.readID();
   Serial.print("TFT ID: ");
   Serial.println(TFTID);
-  
+  Serial.println(tft.size_x);
+  Serial.println(tft.size_y);
   //Initialize chip TFT screen
-  tft.init(TFTID, GREEN);
-  tft.canvas(20,12, true);
+  tft.init(TFTID, GREEN,1);
+
+  tft.canvas(5,6, true);
+  Serial.println(tft.mode);
+  delay(4000);
+  tft.setHexelMode();
+
+  tft.canvas(5,6, true);
 }
 
 void loop() {
