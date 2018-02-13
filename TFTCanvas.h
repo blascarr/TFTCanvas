@@ -210,17 +210,16 @@
 			#define TFT_SD_CS 8
 		#endif
 
-		#define BLACK 0x000001
-		#define WHITE 0xFFFFFF
-		#define BLUE 0x0000FF
+		#define BLACK 	0x000001
+		#define BLUE 	0x0000FF
 		#define RED     0xF800
 		#define GREEN   0x07E0
 		#define CYAN    0x07FF
 		#define MAGENTA 0xF81F
-		#define WHITE 0xFFFFFF
-		#define YELLOW 0x00FF00
-		#define ROSE 0x99AA66
-		#define WHITE 0xFFFFFF
+		#define WHITE 	0xFFFFFF
+		#define YELLOW 	0x00FF00
+		#define ROSE 	0x99AA66
+		#define WHITE 	0xFFFFFF
 
 	#endif
 
@@ -242,6 +241,7 @@
 		#define CYAN    0x07FF
 		#define MAGENTA 0xF81F
 		#define YELLOW  0xFFE0
+		#define ROSE 	0xF81F
 		#define WHITE   0xFFFF
 	#endif					
 
@@ -264,6 +264,7 @@
 							UNKNOWN 0xFF
 	*/
 	#if (!defined (_ST7735H_) && !defined(_ILI9341_) && !defined(_SPFD5408_)) || defined(_SPFD5408_)
+	//#if  defined(_SPFD5408_)
 
 		#define TFTLib Adafruit_TFTLCD
 
@@ -276,13 +277,14 @@
 		#define LCD_RESET A4 // Can alternately just connect to Arduino's reset pin
 		#define TFT_SD_CS 10
 		
-		#define BLACK   0x0001
+		#define BLACK   0x0000
 		#define BLUE    0x001F
 		#define RED     0xF800
 		#define GREEN   0x07E0
 		#define CYAN    0x07FF
 		#define MAGENTA 0xF81F
 		#define YELLOW  0xFFE0
+		#define ROSE 	0xF81F
 		#define WHITE   0xFFFF
 	#endif
 
@@ -367,15 +369,17 @@
 
 		}
 
-		TFTCanvas::TFTCanvas(int CS,int DC,int WR,int RD, int RESET) : Adafruit_TFTLCD ( CS, DC, WR, RD, RESET) {
+		TFTCanvas::TFTCanvas(int CS,int DC,int WR,int RD, int RESET) : TFTLib ( CS, DC, WR, RD, RESET) {
 
 		}
 
 		void TFTCanvas::init(uint16_t tab, uint16_t bckg_color, int rotation){
 			DUMP("TFTCanvas BPS: ", TFT_bps);
-
+			uint16_t identifier = TFTCanvas::readID();
+			DUMPPRINTLN();
+			DUMP("TFTCanvas ID: ", identifier);
 			TFTCanvas::bckg_color = bckg_color;
-			TFTCanvas::begin(tab);
+			TFTCanvas::begin(TFTCanvas::readID());
 			TFTCanvas::fillScreen(TFTCanvas::bckg_color);
 			TFTCanvas::setRotation(rotation);
 			TFTCanvas::size_x = TFTCanvas::width();
@@ -499,7 +503,9 @@
 
 				TFTCanvas();
 				TFTCanvas(int CS,int DC);
+				TFTCanvas(int CS,int DC, int RST);
 				void init(uint16_t bckg_color = 0xFFFFFF, int rotation = 0);
+				void init(uint16_t tab, uint16_t bckg_color = 0xFFFFFF, int rotation = 0);
 
 				void setSize(int sizeX, int sizeY);
 				void setOffset(int offsetX, int offsetY);
@@ -565,7 +571,11 @@
 
 		}
 
-		void TFTCanvas::init(uint16_t bckg_color, int rotation){
+		TFTCanvas::TFTCanvas(int CS,int DC, int RST) : TFTLib( CS, DC, RST) {
+
+		}
+
+		void TFTCanvas::init( uint16_t bckg_color, int rotation){
 			DUMP("TFTCanvas BPS: ", TFT_bps)
 
 			TFTCanvas::bckg_color= bckg_color;
@@ -575,6 +585,11 @@
 			TFTCanvas::size_x = TFTCanvas::width();
 			TFTCanvas::size_y = TFTCanvas::height();
 		}
+
+		void TFTCanvas::init(uint16_t tab, uint16_t bckg_color, int rotation){
+			TFTCanvas::init(bckg_color, rotation);
+		}
+
 	#endif
 
 	/*----------------------------------------------------------*/
