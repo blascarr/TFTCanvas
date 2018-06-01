@@ -1,4 +1,6 @@
 #define _ILI9341_
+//#define _ST7735H_
+//#define _SPFD5408_
 #include <TFTCanvas.h>
 #include <DFPlayer_Mini_Mp3.h>
 SoftwareSerial DF(2, 3); // RX, TX
@@ -48,7 +50,7 @@ void setup() {
   browd.m.Fill(0);
   mouth.m.Fill(0);
   eyei.setOrigin(6,4);
-  eyed.setOrigin(6,10);
+  eyed.setOrigin(6,9);
 
   browi.setOrigin(0,3);
   browd.setOrigin(0,10);
@@ -67,28 +69,23 @@ void setup() {
   uint16_t arrayM[6][2] = {{BLACK,WHITE},{WHITE,BLACK},{WHITE,BLACK},{WHITE,BLACK},{WHITE,BLACK},{BLACK,WHITE}};
   mouth.m.Submatrix(Range<6>(0), Range<2>(0))= arrayM;
 
-  eyei.draw(tft);
-  eyed.draw(tft);
-  browi.draw(tft);
-  browd.draw(tft);
-  mouth.draw(tft);
+  browi.draw(&tft);
+  browd.draw(&tft);
+  mouth.draw(&tft);
 }
 
 void loop() {
 
-  //Set origin Reference of the entire matrix on the screen
+    eyei.move(&tft,0,1);
+    eyed.move(&tft,0,1);
+    eyed.update(&tft);
+    eyei.update(&tft);
+    delay(500);
+    eyei.move(&tft,0,-1);
+    eyed.move(&tft,0,-1);
+    eyed.update(&tft);
+    eyei.update(&tft);
+    delay(500);
   
-  
-  int delayTime = 600;
- 
-  delay(5000);
-  for (int i = 0; i < 6 ; i++){
-    eyei.move(tft,0,1);
-    eyed.move(tft,0,1);
-    delay(delayTime);
-    eyei.move(tft,0,-1);
-    eyed.move(tft,0,-1);
-    delay(delayTime);
-  }
-  //eyei.clean(tft);
+
 }
